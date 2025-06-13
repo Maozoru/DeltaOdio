@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💀 Anti-DELTA Club Web 💀</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/13251eef-1c72-4727-a89d-9e0f716da54b/dgd3l95-4867c12b-cae5-44f0-a74b-b13642ef848a.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzEzMjUxZWVmLTFjNzItNDcyNy1hODlkLTllMGY3MTZkYTU0YlwvZGdkM2w5NS00ODY3YzEyYi1jYWU1LTQ0ZjAtYTc0Yi1iMTM2NDJlZjg0OGEuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.SJz8UDzjFMxdNAJQuun6ZQm5OJy8M0E3ALytdYEdhOo') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Press Start 2P', cursive;
+      color: #ffffff;
+      text-shadow: 2px 2px #000;
+      text-align: center;
+      padding: 2rem;
+    }
+    h1 {
+      color: #ff5555;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .slider {
+      width: 300px;
+    }
+    .container {
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 2rem;
+      border-radius: 20px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 30px #ff0000, 0 0 60px #ff00ff;
+      animation: flicker 1s infinite alternate;
+    }
+    button {
+      background-color: #8b0000;
+      color: white;
+      padding: 1rem;
+      border: none;
+      margin-top: 1rem;
+      cursor: pointer;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.8rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ff0000;
+    }
+    .flashing {
+      animation: flash 0.1s infinite alternate;
+    }
+    @keyframes flash {
+      from { background-color: #ff0000; }
+      to { background-color: #00ffff; }
+    }
+    @keyframes flicker {
+      0% { box-shadow: 0 0 10px #ff0000; }
+      100% { box-shadow: 0 0 30px #ff00ff, 0 0 60px #ff0000; }
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      margin-top: 1rem;
+      font-family: 'Press Start 2P';
+      font-size: 0.6rem;
+      resize: none;
+    }
+    #respuesta {
+      margin-top: 2rem;
+      white-space: pre-wrap;
+      font-size: 0.7rem;
+    }
+    #jumpscare {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black url('https://i.redd.it/ntb9roplfz5f1.gif') center center no-repeat;
+      background-size: contain;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <div id="jumpscare"></div>
+
+  <div class="container">
+    <h1>💥 ¡ODIÁ DELTARUNE COMO SI FUERA 2018! 💥</h1>
+    <p>¿KRIS TE PARECE UN PELOTUDO? ¿HAY MUCHOS GAYS? ¿EL LORE TE DERRITIÓ EL CEREBRO?</p>
+    <input type="range" min="1" max="10" value="10" class="slider" id="nivelOdio" />
+    <p>Expresá tu rabia reprimida en este formulario digital del inframundo:</p>
+    <textarea id="motivo" placeholder="Mi odio hacia Kris es infinito porque..."></textarea>
+    <button onclick="gritarAlMundo()">💀 GRITAR AL MUNDO 💀</button>
+    <button onclick="window.close()">🚪 ESCAPAR ANTES DE ESCUCHAR MÁS</button>
+    <p id="respuesta"></p>
+    <iframe
+        id="ytPlayer"
+        width="0"
+        height="0"
+        style="display:none;"
+        src="https://www.youtube.com/watch?v=gQZxGRucsMQ&list=PLEUKcNuP7bDX9RoW3HqYR6EFvWZh12upZ&index=21"
+        frameborder="0"
+        allow="autoplay"
+    ></iframe>
+  </div>
+
+  <script>
+    let odioGlobal = 0;
+
+    function gritarAlMundo() {
+      const nivel = parseInt(document.getElementById('nivelOdio').value);
+      const motivo = document.getElementById('motivo').value.trim();
+
+      if (!motivo) {
+        alert("¿El fandom te da mensajes de odio? ¿No entendiste el final del capítulo 4? ¡DECILO!");
+        return;
+      }
+
+      const triggers = ["Spamton Theme", "A CYBER'S WORLD?", "THE WORLD REVOLVING", "Don't Forget en loop"];
+      const frases = ["Toby es un genio", "Es arte", "¡No entendiste el mensaje!"];
+      const musical = triggers[Math.floor(Math.random() * triggers.length)];
+      const frase = frases[Math.floor(Math.random() * frases.length)];
+
+      document.body.classList.add("flashing");
+      odioGlobal += nivel;
+
+      const texto = `💔 Nivel de odio hacia DELTARUNE: ${nivel}/10\n📖 Motivo: ${motivo}\n🎼 Trigger musical: ${musical}\n👺 Frase detonante: ${frase}\n🔥 Odio acumulado global: ${odioGlobal}`;
+
+      document.getElementById('respuesta').innerText = texto + "\n\nTu odio ha sido registrado junto a Jevil y un remix de 10 horas de BIG SHOT.";
+
+      if (nivel >= 9) {
+        const jumpscare = document.getElementById('jumpscare');
+        jumpscare.style.display = 'block';
+        setTimeout(() => { jumpscare.style.display = 'none'; }, 3000);
+      }
+
+      setTimeout(() => document.body.classList.remove("flashing"), 3000);
+    }
+  </script>
+</body>
+</html>
