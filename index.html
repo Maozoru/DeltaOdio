@@ -111,6 +111,7 @@
       allow="autoplay"
       allowfullscreen
     ></iframe>
+    <audio id="jumpscareSound" src="Sonidos/mr-tenna-says-its-tv-time.mp3"></audio>
   </div>
 
   <script>
@@ -139,9 +140,19 @@
 
       if (nivel >= 9) {
         const jumpscare = document.getElementById('jumpscare');
+        const audio = document.getElementById('jumpscareSound');
+
         jumpscare.style.display = 'block';
-        setTimeout(() => { jumpscare.style.display = 'none'; }, 3000);
+        audio.currentTime = 0;
+        audio.play();
+
+        setTimeout(() => {
+          jumpscare.style.display = 'none';
+          audio.pause();
+          audio.currentTime = 0;
+        }, 3000);
       }
+
 
       setTimeout(() => document.body.classList.remove("flashing"), 3000);
     }
@@ -149,7 +160,7 @@
 
   <!-- Botón secreto sin estilo con imagen de Lancer -->
   <div id="lancerButton">
-    <img src="Lancer_face_joining.webp" alt="Lancer">
+    <img src="Imagenes/Lancer_face_joining.webp" alt="Lancer">
   </div>
 
   <!-- Contenedor para el iframe de sonido -->
