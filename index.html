@@ -102,6 +102,15 @@
         frameborder="0"
         allow="autoplay"
     ></iframe>
+    <!-- Música de fondo desde YouTube -->
+    <iframe
+      width="0"
+      height="0"
+      src="https://www.youtube.com/embed/Zf2qOWmKiz0?autoplay=1&loop=1&playlist=Zf2qOWmKiz0&controls=0&showinfo=0&modestbranding=1"
+      frameborder="0"
+      allow="autoplay"
+      allowfullscreen
+    ></iframe>
   </div>
 
   <script>
@@ -136,6 +145,31 @@
 
       setTimeout(() => document.body.classList.remove("flashing"), 3000);
     }
+  </script>
+
+  <!-- Botón secreto sin estilo con imagen de Lancer -->
+  <div id="lancerButton">
+    <img src="Lancer_face_joining.webp" alt="Lancer">
+  </div>
+
+  <!-- Contenedor para el iframe de sonido -->
+  <div id="lancerSound"></div>
+  <script>
+    document.getElementById('lancerButton').addEventListener('click', function () {
+      const container = document.getElementById('lancerSound');
+      container.innerHTML = `
+        <iframe width="0" height="0"
+                src="https://www.youtube.com/embed/7uugXyY-5xQ?autoplay=1"
+                frameborder="0"
+                allow="autoplay"
+                allowfullscreen>
+        </iframe>`;
+      
+      // Detener el audio después de unos segundos
+      setTimeout(() => {
+        container.innerHTML = '';
+      }, 6000);
+    });
   </script>
 </body>
 </html>
